@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sample-api-pod
+spec:
+  containers:
+  - name: sample-api-container
+    image: sampleple-api
