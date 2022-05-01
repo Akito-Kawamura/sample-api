@@ -6,9 +6,11 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = {extras = ["standard"], version = "*"}
+pydantic = "*"
 
 [dev-packages]
 black = "==22.3.0"
+pytest = "*"
 
 [requires]
 python_version = "3.9"
