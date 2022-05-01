@@ -2,16 +2,12 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get('/') # methodとendpointの指定
-async def hello():
-    return {"text": "hello world!"}
 
-# class Data(BaseModel):
-#     """request data用の型ヒントがされたクラス"""
-#     string: str
-#     default_none: Optional[int] = None
-#     lists: List[int]
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
 
-# @app.post('/post')
-# async def declare_request_body(data: Data):
-#     return {"text": f"hello, {data.string}, {data.default_none}, {data.lists}"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}

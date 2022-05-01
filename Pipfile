@@ -4,13 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
+flask = "~=2.1"
 fastapi = "*"
 sqlalchemy = "*"
 uvicorn = "*"
 
 [dev-packages]
-black = "*"
+black = "==22.3.0"
 
 [requires]
 python_version = "3.9"
