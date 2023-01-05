@@ -21,6 +21,10 @@ app = FastAPI()
 async def root() -> Dict[str, str]:
     return {"message": "Hello World"}
 
+@app.get("/health")
+async def root() -> Dict[str, str]:
+    return {"message": "OK"}
+
 @app.post("/items/")
 async def create_item(item: Item):
     return item
