@@ -25,9 +25,12 @@ async def root() -> Dict[str, str]:
 async def root() -> Dict[str, str]:
     return {"message": "OK"}
 
-@app.post("/items/")
-async def create_item(item: Item):
-    return item
+@app.put("/items/{item_id}")
+async def create_item(item_id: int, item: Item, q: Union[str, None] = None):
+    result = {"item_id": item_id, **item.dict()}
+    if q:
+        result.update({"q": q})
+    return result
 
 @app.get("/models/{model_name}")
 async def get_model(model_name: ModelName):
@@ -42,10 +45,6 @@ async def get_model(model_name: ModelName):
 @app.get("/files/{file_path:path}")
 async def read_file(file_path: str):
     return {"file_path": file_path}
-
-@app.get("/item/")
-async def read_item(skip: int = 0, limit: int = 10):
-    return fake_items_db[skip : skip + limit]
 
 @app.post("/prefecture")
 def read_root(*args):
