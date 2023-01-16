@@ -1,8 +1,11 @@
-import pytest
-import json
+from fastapi.testclient import TestClient
 
-def test_json():
-	json_open = open('./json_mock/user.json', 'r')
-	json_load = json.load(json_open)
+from .main import app
 
-	print(json_load)
+client = TestClient(app)
+
+
+def test_read_main():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"msg": "Hello World"}
