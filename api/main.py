@@ -1,5 +1,5 @@
 from enum import Enum
-from fastapi import FastAPI
+from fastapi import FastAPI, Query
 from typing import Dict, Union
 from pydantic import BaseModel
 
