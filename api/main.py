@@ -1,6 +1,6 @@
 from enum import Enum
 from fastapi import FastAPI, Query
-from typing import Dict, Union
+from typing import Dict, Union, List
 from pydantic import BaseModel
 
 class ModelName(str, Enum):
@@ -25,12 +25,10 @@ async def root() -> Dict[str, str]:
 async def root() -> Dict[str, str]:
     return {"message": "OK"}
 
-@app.put("/items/{item_id}")
-async def create_item(item_id: int, item: Item, q: Union[str, None] = None):
-    result = {"item_id": item_id, **item.dict()}
-    if q:
-        result.update({"q": q})
-    return result
+@app.get("/items/")
+async def read_items(q: Union[List[str], None] = Query(default=None)):
+    query_items = {"q": q}
+    return query_items
 
 @app.get("/models/{model_name}")
 async def get_model(model_name: ModelName):
