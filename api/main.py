@@ -1,3 +1,5 @@
+import uvicorn
+
 from enum import Enum
 from fastapi import FastAPI, Query
 from typing import Dict, Union, List
@@ -43,3 +45,7 @@ async def read_items(
     if q:
         results.update({"q": q})
     return results
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
